@@ -7,8 +7,8 @@ def sanitize_filename(filename):
     pattern = r'[\\/:*?"<>|\r\n]+'
     return re.sub(pattern, '_', filename)
 
-folder_name = 'D:\\Users\\Henry\\Downloads\\github\\Learning-Python\\texttomp4\\OG Files\\'
-output_folder = 'D:\\Users\\Henry\\Downloads\\github\\Learning-Python\\texttomp4\\Files\\'
+folder_name = 'D:\\Github\\Text-to-MP4\\OG Files\\'
+output_folder = 'D:\\Github\\Text-to-MP4\\Files1\\'
 for file_name in tqdm(os.listdir(folder_name)):
     if file_name.endswith(".txt"):
         file_path = os.path.join(folder_name, file_name)

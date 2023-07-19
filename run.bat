@@ -1,6 +1,10 @@
 @echo off
 setlocal EnableDelayedExpansion
 
+call C:/ProgramData/anaconda3/Scripts/activate
+
+call conda activate tortoise
+
 rem Set the directory path where the input files are located
 set "input_path=D:\Github\Text-to-MP4\Files"
 
