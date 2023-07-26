@@ -11,6 +11,9 @@ set "input_path=D:\Github\Text-to-MP4\Files"
 rem Set the directory path where the output files should be saved
 set "output_dir=D:\Github\Text-to-MP4\Output"
 
+rem Set the directory path where the output txt files should be saved
+set "output_dir_txt=D:\Github\Text-to-MP4\OutputTXT"
+
 rem Create the output directory if it doesn't already exist
 if not exist "%output_dir%" (
   mkdir "%output_dir%"
@@ -29,7 +32,7 @@ for %%i in ("%input_path%\*.txt") do (
   python D:/Github/tortoise-tts/tortoise/read.py --voice stephenfry --text "%%~i" --preset ultra_fast --seed 1684581035 --output_path "!output_path!"
 
   rem Move the text file somewhere else
-  move "%%i" "%output_dir%\"
+  move "%%i" "%output_dir_txt%\"
 )
 
 rem Pause the script so that it doesn't immediately close when finished

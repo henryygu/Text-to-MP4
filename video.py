@@ -1,5 +1,6 @@
 import os
 import shutil
+import re
 import subprocess
 import numpy as np
 from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips,TextClip,CompositeVideoClip
@@ -50,8 +51,10 @@ for root, dirs, files in os.walk(folder_path):
             audio = AudioFileClip(wav_path)
 
             #Title
-            chapter_name_title = chapter_name[chapter_name.find("CHAPTER"):]
-
+            pattern = r'Chapter\s+(\d+)'
+            match = re.search(pattern, chapter_name)
+            chapter_name_title = match.group(0)
+            print(chapter_name_title)
             # WE CREATE THE TEXT THAT IS GOING TO MOVE, WE CENTER IT.
             txtClip = TextClip(chapter_name_title,color='white', font="Amiri-Bold",
                             kerning = 5, fontsize=100)
