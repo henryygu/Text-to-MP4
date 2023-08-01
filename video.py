@@ -54,6 +54,13 @@ for root, dirs, files in os.walk(folder_path):
             pattern = r'Chapter\s+(\d+)'
             match = re.search(pattern, chapter_name)
             chapter_name_title = match.group(0)
+            
+            # match2 = re.search(r'^.*?___', chapter_name)
+            # filename = match2.group(0) 
+            # filename = re.sub(r'___', '', filename)
+            
+            # chapter_name_title = filename + " " +chapter_name_title
+            
             print(chapter_name_title)
             # WE CREATE THE TEXT THAT IS GOING TO MOVE, WE CENTER IT.
             txtClip = TextClip(chapter_name_title,color='white', font="Amiri-Bold",
@@ -72,7 +79,7 @@ for root, dirs, files in os.walk(folder_path):
             title_video_clip = CompositeVideoClip([Title_vid, final_title])
             # Write the resulting video to a file
             ##debugg using save_frame
-            #result.save_frame("frame.png", t=3)
+            #title_video_clip.save_frame("frame.png", t=3)
             title_video_clip.write_videofile("title.mp4")
 
             ##audio 
