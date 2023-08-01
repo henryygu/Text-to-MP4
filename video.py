@@ -84,35 +84,35 @@ for root, dirs, files in os.walk(folder_path):
 
             ##audio 
             #modify background video to same length as audio
-            audio_background = "audio_background.mp4"
+            audio_background = f"Done\{chapter_name}.mp4"
             cmd = ['ffmpeg', '-i', background_video_path, '-i', wav_path, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-strict', '-2', '-shortest', audio_background]
             subprocess.run(cmd)
 
-            video2 = audio_background
-            video1 = "title.mp4"
-            output_file = f"Done\{chapter_name}.mp4"
-            ## fastest, can't figure out why the second clip doesn't work: cmd = ['ffmpeg', '-f','concat', '-safe', '0', '-i', 'mylist.txt','-c','copy',output_file]
-            ## prob works, slow af ffmpeg -i Title.mp4 -i audio_background.mp4 -filter_complex "[0:v] [0:a] [1:v] [1:a] concat=n=2:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" output.mp4     
-            ##recodes but works: [ffmpeg -hwaccel cuvid -c:v h264_cuvid -i Title.mp4 -hwaccel cuvid -c:v h264_cuvid -i audio_background.mp4 -filter_complex "[0:v] [0:a] [1:v] [1:a] concat=n=2:v=1:a=1 [v] [a]" -c:v h264_nvenc -b:v 10M -c:a aac -map "[v]" -map "[a]" output.mp4]
-            command = [
-                'ffmpeg',
-                '-hwaccel', 'cuvid',
-                '-c:v', 'h264_cuvid',
-                '-i', video1,
-                '-hwaccel', 'cuvid',
-                '-c:v', 'h264_cuvid',
-                '-i', video2,
-                '-filter_complex', '[0:v] [0:a] [1:v] [1:a] concat=n=2:v=1:a=1 [v] [a]',
-                '-c:v', 'h264_nvenc',
-                '-b:v', '10M',
-                '-c:a', 'aac',
-                '-map', '[v]',
-                '-map', '[a]',
-                output_file
-            ]
-            subprocess.run(command)
-            os.remove("title.mp4")
-            os.remove("audio_background.mp4")
+            # video2 = audio_background
+            # video1 = "title.mp4"
+            # output_file = f"Done\{chapter_name}.mp4"
+            # ## fastest, can't figure out why the second clip doesn't work: cmd = ['ffmpeg', '-f','concat', '-safe', '0', '-i', 'mylist.txt','-c','copy',output_file]
+            # ## prob works, slow af ffmpeg -i Title.mp4 -i audio_background.mp4 -filter_complex "[0:v] [0:a] [1:v] [1:a] concat=n=2:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" output.mp4     
+            # ##recodes but works: [ffmpeg -hwaccel cuvid -c:v h264_cuvid -i Title.mp4 -hwaccel cuvid -c:v h264_cuvid -i audio_background.mp4 -filter_complex "[0:v] [0:a] [1:v] [1:a] concat=n=2:v=1:a=1 [v] [a]" -c:v h264_nvenc -b:v 10M -c:a aac -map "[v]" -map "[a]" output.mp4]
+            # command = [
+            #     'ffmpeg',
+            #     '-hwaccel', 'cuvid',
+            #     '-c:v', 'h264_cuvid',
+            #     '-i', video1,
+            #     '-hwaccel', 'cuvid',
+            #     '-c:v', 'h264_cuvid',
+            #     '-i', video2,
+            #     '-filter_complex', '[0:v] [0:a] [1:v] [1:a] concat=n=2:v=1:a=1 [v] [a]',
+            #     '-c:v', 'h264_nvenc',
+            #     '-b:v', '10M',
+            #     '-c:a', 'aac',
+            #     '-map', '[v]',
+            #     '-map', '[a]',
+            #     output_file
+            # ]
+            # subprocess.run(command)
+            # os.remove("title.mp4")
+            # os.remove("audio_background.mp4")
             audio.close()
             title_video_clip.close()
             shutil.move(root,os.path.join("Done",root))
