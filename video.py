@@ -61,26 +61,26 @@ for root, dirs, files in os.walk(folder_path):
             
             # chapter_name_title = filename + " " +chapter_name_title
             
-            print(chapter_name_title)
-            # WE CREATE THE TEXT THAT IS GOING TO MOVE, WE CENTER IT.
-            txtClip = TextClip(chapter_name_title,color='white', font="Amiri-Bold",
-                            kerning = 5, fontsize=100)
-            cvc = CompositeVideoClip( [txtClip.set_pos('center')],
-                                    size=screensize)
-            # WE USE THE PLUGIN findObjects TO LOCATE AND SEPARATE EACH LETTER
-            letters = findObjects(cvc) # a list of ImageClips
-            # WE ANIMATE THE LETTERS
-            clips = [ CompositeVideoClip( moveLetters(letters,funcpos),
-                                        size = screensize).subclip(0,3.25)
-                    for funcpos in [vortex] ]
-            # WE CONCATENATE EVERYTHING AND WRITE TO A FILE
-            final_title = concatenate_videoclips(clips)
-            # Overlay the final clip onto the background clip
-            title_video_clip = CompositeVideoClip([Title_vid, final_title])
-            # Write the resulting video to a file
-            ##debugg using save_frame
-            #title_video_clip.save_frame("frame.png", t=3)
-            title_video_clip.write_videofile("title.mp4")
+            # print(chapter_name_title)
+            # # WE CREATE THE TEXT THAT IS GOING TO MOVE, WE CENTER IT.
+            # txtClip = TextClip(chapter_name_title,color='white', font="Amiri-Bold",
+            #                 kerning = 5, fontsize=100)
+            # cvc = CompositeVideoClip( [txtClip.set_pos('center')],
+            #                         size=screensize)
+            # # WE USE THE PLUGIN findObjects TO LOCATE AND SEPARATE EACH LETTER
+            # letters = findObjects(cvc) # a list of ImageClips
+            # # WE ANIMATE THE LETTERS
+            # clips = [ CompositeVideoClip( moveLetters(letters,funcpos),
+            #                             size = screensize).subclip(0,3.25)
+            #         for funcpos in [vortex] ]
+            # # WE CONCATENATE EVERYTHING AND WRITE TO A FILE
+            # final_title = concatenate_videoclips(clips)
+            # # Overlay the final clip onto the background clip
+            # title_video_clip = CompositeVideoClip([Title_vid, final_title])
+            # # Write the resulting video to a file
+            # ##debugg using save_frame
+            # #title_video_clip.save_frame("frame.png", t=3)
+            # title_video_clip.write_videofile("title.mp4")
 
             ##audio 
             #modify background video to same length as audio
@@ -113,8 +113,8 @@ for root, dirs, files in os.walk(folder_path):
             # subprocess.run(command)
             # os.remove("title.mp4")
             # os.remove("audio_background.mp4")
+            # title_video_clip.close()
             audio.close()
-            title_video_clip.close()
             shutil.move(root,os.path.join("Done",root))
 
 
