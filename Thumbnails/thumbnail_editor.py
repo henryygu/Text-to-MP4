@@ -24,6 +24,8 @@ def generate_images(background_image, excel_file, output_folder):
     # Read the data from the Excel file into a pandas DataFrame
     df = pd.read_excel(excel_file)
 
+    filename1 = os.path.splitext(background_image)[0]
+    
     for index, row in df.iterrows():
         text = row['Chapter_names']  # Assuming the column containing the text is named 'Text'
         position = (70,460)  # Assuming the columns for X and Y coordinates are named 'X' and 'Y'
@@ -32,11 +34,11 @@ def generate_images(background_image, excel_file, output_folder):
         img_with_text = overlay_text_on_background(background_image, text, position)
 
         # Save the image to the output folder with a name corresponding to the row index
-        img_with_text.save(f"{output_folder}/{index}.png")
+        img_with_text.save(f"{output_folder}/{filename1}_{index}.png")
 
 
 # Replace these paths with your actual paths for the background image and Excel file
-background_image_path = "Black Minimalist Interiors Design YouTube Thumbnail.png"
+background_image_path = "Chilord.png"
 excel_file_path = "Book1.xlsx"
 output_folder_path = "Completed_Thumbnails"
 
