@@ -116,6 +116,7 @@ for root, dirs, files in os.walk(folder_path):
             audio.close()
             title_video_clip.close()
             shutil.move(root,os.path.join("Done",root))
+            os.remove(root)
 
 
 
