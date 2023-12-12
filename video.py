@@ -9,7 +9,7 @@ from moviepy.video.tools.segmenting import findObjects
 
 Title_vid  = "D:/davinci/Title.mov"
 background_video_path = "D:/davinci/backgroundvid.mp4"
-output_path = "OutputVideo/output.mp4"
+# output_path = "OutputVideo/output.mp4"
 
 # helper function
 rotMatrix = lambda a: np.array( [[np.cos(a),np.sin(a)], 
@@ -39,10 +39,10 @@ screensize = (1920 ,1080)
 Title_vid = VideoFileClip(Title_vid)
 background_video = VideoFileClip(background_video_path)
 
-folder_path = "Output\\"
+folder_path = "OutputMP3\\"
 for root, dirs, files in os.walk(folder_path):
     for file in files:
-        if file.endswith("combined.wav"):
+        if file.endswith("combined.wav.wav"):
             wav_path = os.path.join(root, file)
             chapter_name = wav_path.split("\\")[1]
             print("WAV file:", wav_path)
@@ -115,7 +115,7 @@ for root, dirs, files in os.walk(folder_path):
             os.remove("audio_background.mp4")
             audio.close()
             title_video_clip.close()
-            shutil.move(root,os.path.join("Done",root))
+            shutil.move(os.path.join(root,file),os.path.join("Done",root.split("\\")[0],root.split("\\")[1]+".wav"))
             os.remove(root)
 
 

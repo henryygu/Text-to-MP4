@@ -38,7 +38,7 @@ def generate_images(background_image, excel_file, output_folder):
 
 
 # Replace these paths with your actual paths for the background image and Excel file
-background_image_path = "Chilord.png"
+background_image_path = "Black.png"
 excel_file_path = "Book1.xlsx"
 output_folder_path = "Completed_Thumbnails"
 

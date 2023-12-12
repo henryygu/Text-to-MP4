@@ -6,13 +6,13 @@ call C:/ProgramData/anaconda3/Scripts/activate
 call conda activate tortoise
 
 rem Set the directory path where the input files are located
-set "input_path=D:\Github\Text-to-MP4\Files"
+set "input_path=D:\Github\Text-to-MP4\InputTxtFiles"
 
 rem Set the directory path where the output files should be saved
-set "output_dir=D:\Github\Text-to-MP4\Output"
+set "output_dir=D:\Github\Text-to-MP4\OutputMP3"
 
 rem Set the directory path where the output txt files should be saved
-set "output_dir_txt=D:\Github\Text-to-MP4\OutputTXT"
+set "output_dir_txt=D:\Github\Text-to-MP4\ProcessedTXT"
 
 rem Create the output directory if it doesn't already exist
 if not exist "%output_dir%" (
@@ -33,6 +33,8 @@ for %%i in ("%input_path%\*.txt") do (
 
   rem Move the text file somewhere else
   move "%%i" "%output_dir_txt%\"
+
+  rem python video.py 
 )
 
 rem Pause the script so that it doesn't immediately close when finished

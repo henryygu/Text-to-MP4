@@ -1,6 +1,6 @@
 import os
 from send2trash import send2trash
-folder_path = "Output\\"
+folder_path = "OutputMP3\\"
 os.chdir("D:\\Github\Text-to-MP4\\")
 for root, dirs, files in os.walk(folder_path):
     if "combined.wav.wav" in files:
