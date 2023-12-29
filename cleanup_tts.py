@@ -8,10 +8,10 @@ for root, dirs, files in os.walk(folder_path):
             if file.endswith("combined.wav.wav"):
                 a = 1
             else:
-                #os.remove(os.path.join(root,file))
-                send2trash(os.path.join(root,file))
+                os.remove(os.path.join(root,file))
+                #send2trash(os.path.join(root,file))
                 #print("file")
-                #print(file)
+                print(root,file)
     else:
         #print("root")
         print(root)        

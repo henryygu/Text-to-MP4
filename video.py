@@ -3,7 +3,7 @@ import shutil
 import re
 import subprocess
 import numpy as np
-from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips,TextClip,CompositeVideoClip
+from moviepy.editor import VideoFileClip, AudioFileClip,concatenate_videoclips,TextClip,CompositeVideoClip
 from moviepy.video.tools.segmenting import findObjects
 
 
@@ -28,9 +28,11 @@ def vortexout(screenpos,i,nletters):
     v = rotMatrix(a).dot([-1,0])
     if i%2 : v[1] = -v[1]
     return lambda t: screenpos+400*d(t-0.1*i)*rotMatrix(-0.2*d(t)*a).dot(v)
+
 def moveLetters(letters, funcpos):
     return [ letter.set_pos(funcpos(letter.screenpos,i,len(letters)))
               for i,letter in enumerate(letters)]
+
 screensize = (1920 ,1080)
 
 
@@ -47,20 +49,15 @@ for root, dirs, files in os.walk(folder_path):
             chapter_name = wav_path.split("\\")[1]
             print("WAV file:", wav_path)
             print("Chapter Name:", chapter_name)
-            
             audio = AudioFileClip(wav_path)
-
             #Title
             pattern = r'Chapter\s+(\d+)'
             match = re.search(pattern, chapter_name)
             chapter_name_title = match.group(0)
-            
             # match2 = re.search(r'^.*?___', chapter_name)
             # filename = match2.group(0) 
             # filename = re.sub(r'___', '', filename)
-            
             # chapter_name_title = filename + " " +chapter_name_title
-            
             print(chapter_name_title)
             # WE CREATE THE TEXT THAT IS GOING TO MOVE, WE CENTER IT.
             txtClip = TextClip(chapter_name_title,color='white', font="Amiri-Bold",
@@ -81,13 +78,11 @@ for root, dirs, files in os.walk(folder_path):
             ##debugg using save_frame
             #title_video_clip.save_frame("frame.png", t=3)
             title_video_clip.write_videofile("title.mp4")
-
             ##audio 
             #modify background video to same length as audio
             audio_background = "audio_background.mp4"
             cmd = ['ffmpeg', '-i', background_video_path, '-i', wav_path, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-strict', '-2', '-shortest', audio_background]
             subprocess.run(cmd)
-
             video2 = audio_background
             video1 = "title.mp4"
             output_file = f"Done\{chapter_name}.mp4"
@@ -115,21 +110,7 @@ for root, dirs, files in os.walk(folder_path):
             os.remove("audio_background.mp4")
             audio.close()
             title_video_clip.close()
-            shutil.move(os.path.join(root,file),os.path.join("Done",root.split("\\")[0],root.split("\\")[1]+".wav"))
-            os.remove(root)
-
-
-
-
-
-# ##fmpeg
-# wav_path_slash = wav_path.replace('\\', '/')
-
-# command = f"ffmpeg -i '{video_path}' -i '{wav_path_slash}' -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 -t {audio.duration} {output_path}"
-# command
-# subprocess.run(command, check=True)
-
-
-
-
-# add_movie_title(video_path, wav_path, output_path, chapter_name) 
+            ##shutil.move(root,os.path.join("Done",root))
+            ##shutil.move(os.path.join(root,file),os.path.join("Done",root.split("\\")[0],root.split("\\")[1]+".wav"))
+            #os.remove(os.path.dirname(root))
+            shutil.rmtree(os.path.dirname(root))

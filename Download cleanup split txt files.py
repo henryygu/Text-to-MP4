@@ -9,7 +9,7 @@ def sanitize_filename(filename):
 
 folder_name = 'D:\\Github\\Text-to-MP4\\OG Files\\'
 output_folder = 'D:\\Github\\Text-to-MP4\\Files1\\'
-for file_name in tqdm(os.listdir(folder_name)):
+for file_name in tqdm(os.listdir(folder_name\)):
     if file_name.endswith(".txt"):
         file_path = os.path.join(folder_name, file_name)
         with open(file_path, 'r', encoding="utf8") as file:
