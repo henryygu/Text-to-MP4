@@ -85,10 +85,10 @@ for file_path in glob.glob(os.path.join(input_path, "*.txt")):
                 if file.endswith("combined.wav.wav"):
                     a = 1
                 else:
-                    #os.remove(os.path.join(root,file))
-                    send2trash(os.path.join(root,file))
+                    os.remove(os.path.join(root,file))
+                    #send2trash(os.path.join(root,file))
                     #print("file")
-                    #print(file)
+                    print(file)
         else:
             #print("root")
             print(root)      
@@ -164,3 +164,5 @@ for file_path in glob.glob(os.path.join(input_path, "*.txt")):
                 ##shutil.move(root,os.path.join("Done",root))
                 ##shutil.move(os.path.join(root,file),os.path.join("Done",root.split("\\")[0],root.split("\\")[1]+".wav"))
                 shutil.rmtree(os.path.dirname(root))
+                
+                
