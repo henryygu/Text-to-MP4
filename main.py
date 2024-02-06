@@ -65,6 +65,8 @@ for file_path in glob.glob(os.path.join(input_path, "*.txt")):
     # Get the file name without extension
     file_name = os.path.splitext(os.path.basename(file_path))[0]
     print(file_name)
+    if 'Desc' in file_name:
+        continue
     # Set the output directory path with the file name
     output_path = os.path.join(output_dir, file_name)
     # Run the Python command with the current input file and output directory
@@ -165,4 +167,4 @@ for file_path in glob.glob(os.path.join(input_path, "*.txt")):
                 ##shutil.move(os.path.join(root,file),os.path.join("Done",root.split("\\")[0],root.split("\\")[1]+".wav"))
                 shutil.rmtree(os.path.dirname(root))
                 
-                
+print("Done")
