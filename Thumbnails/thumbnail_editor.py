@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 os.chdir("Thumbnails")
 # Function to overlay text on the background image
-def overlay_text_on_background(bg_image, text, text_position, font_size=130, font_color=(255, 255,0)):
+def overlay_text_on_background(bg_image, text, text_position, font_size=130, font_color=(255,255,255)):
     img = Image.open(bg_image)
     draw = ImageDraw.Draw(img)
     # Load a font with the desired size
@@ -31,7 +31,7 @@ def generate_images(background_image, excel_file, output_folder):
 
 
 # Replace these paths with your actual paths for the background image and Excel file
-background_image_path = "brokenchains.png"
+background_image_path = "firebird.png"
 excel_file_path = "Book1.xlsx"
 output_folder_path = "Completed_Thumbnails"
 

@@ -108,5 +108,5 @@ for root, dirs, files in os.walk(folder_path):
             audio.close()
             title_video_clip.close()
             ##shutil.move(root,os.path.join("Done",root))
-            ##shutil.move(os.path.join(root,file),os.path.join("Done",root.split("\\")[0],root.split("\\")[1]+".wav"))
+            shutil.move(os.path.join(root,file),os.path.join(os.path.dirname(root),"VideoMade",file))
             #os.remove(os.path.dirname(root))
